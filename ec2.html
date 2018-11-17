@@ -1,0 +1,55 @@
+<html>
+
+<head>
+    <title>Amazon EC2Scratchpad</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/aws-sdk/2.6.9/aws-sdk.js"></script>
+    <script src="scratchpad.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script>
+    /*eslint no-unused-vars: "off"*/
+    var formdata = {};
+    var vpcID = "vpc-0b9aaa6c", // created VPC ID
+        internetGatewayID = "igw-bdb274da", // created internet gatwayy ID
+        subnetID = "subnet-7785412c", // created subnet ID
+        routeTableID = "rtb-be20b2d8", // created route table
+
+        spotFleetRequestID = "sfr-ee780c33-d3c4-4ad0-8a94-5114f49d153b",
+        instanceID = "i-9a97948c",
+        spotInstanceRequestID = "sir-v8di44dj",
+        elasticNetworkInterfaceID = "eni-9fd3d083",
+        securityGroupID = "sg-9f7a56e5";
+
+    function generateVPC() {
+        var form = document.getElementById('EC2form');
+        formdata.accessid = document.getElementById('accessid').value;
+        formdata.accesskey = document.getElementById('accesskey').value;
+        console.log(formdata);
+        AWSService.init(formdata, function() {
+            // Call methods here whichever you want to execute.
+            AWSService.describeTags();
+            // AWSService.describeInstances(instanceID);
+        });
+    }
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <form id="EC2form" role="form" class="form" method="post">
+            <div class="row col-md-12">
+                <div class="form-group">
+                    <label>Access Key ID</label>
+                    <input type="text" value="AKIAIZZZ7OX2IHQJRE2Q" name="accessid" id="accessid" class="form-control" required />
+                </div>
+                <div class="form-group" ">
+                    <label>Secret Access Key</label>
+                    <input type="text " value="Cy13vPOij03nMVJr3qxQIYk4pGoc1mWGNbLtVeiv " name="accesskey " id="accesskey " class="form-control " required />
+                </div>
+                <div class="form-group ">
+                    <button class="btn btn-success " type="button " onclick="generateVPC() ">Generate VPC</button>
+                </div>
+            </div>
+        </form>
+      </div>
+  </body>
+</html>

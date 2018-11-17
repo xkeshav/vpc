@@ -1,0 +1,18 @@
+- How do we create intnace from the store-backed-ami for each AWS user?
+Do we need to copy the image into s3 bucket of user and than use that image?
+Or
+Do we need to register the image from store-backed0ami to amazon ebs-backed ami everytime?
+
+- for creating spot instance we are using fix spot price which can stop to create instance if bid price is higher than our specified spot price
+all instances are terminated, the bid is expired, or the bid falls below current market
+
+Assumtion for creating VPC
+
+ - using fixed  CidrBlock: "10.0.0.0/16" for the VPC
+ - using fixed  CidrBlock: "10.0.1.0/24", for subnet
+ - using fixed  DestinationCidrBlock: '0.0.0.0/0' when we create route
+
+ - enabling dsn hostname for each VPC we have created
+ - Adds one or more ingress rules to a security group.
+
+inbound rule for port:8080 and port:80 for all CIDR range. CidrIp: '0.0.0.0/0'
