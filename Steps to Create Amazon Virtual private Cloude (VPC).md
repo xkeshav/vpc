@@ -112,10 +112,12 @@ After we've created your subnet and configured your routing, We can launch an in
 
     - Method : [`RequestSpotFleet()`](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/EC2.html#requestSpotFleet-property)
 
-    - Parameters :  This Json is generated when we request for spot instance from aws console and also generate KeyPair for SSH access
+    - Parameters :  This JSON is generated when we request for spot instance from aws console and also generate KeyPair for SSH access.
+    
+ ```json
         {
             "SpotFleetRequestConfig": {
-                "IamFleetRole": "arn:aws:iam::902018721894:role/aws-ec2-spot-fleet-role",
+                "IamFleetRole": "arn:aws:iam::902018721111:role/aws-ec2-spot-fleet-role",
                 "AllocationStrategy": "lowestPrice",
                 "TargetCapacity": 1,
                 "SpotPrice": "0.067",
@@ -128,7 +130,7 @@ After we've created your subnet and configured your routing, We can launch an in
                     "KeyName": "Zymr-KeyPair",
                     "SpotPrice": "0.067",
                     "IamInstanceProfile": {
-                        "Arn": "arn:aws:iam::902018721894:instance-profile/Admin"
+                        "Arn": "arn:aws:iam::902018721111:instance-profile/Admin"
                     },
                     "BlockDeviceMappings": [{
                         "DeviceName": "/dev/sda1",
@@ -152,14 +154,17 @@ After we've created your subnet and configured your routing, We can launch an in
                 "Type": "request"
             }
         };
+```
 
-    The Spot fleet launches Spot instances when the Spot price is below our bid. The Spot instances run until either the bid price is no longer higher than the Spot price, or we terminate them ourself.
+ The Spot fleet launches Spot instances when the Spot price is below our bid. The Spot instances run until either the bid price is no longer higher than the Spot price, or we terminate them ourself.
 
 2. Add custom TCP rules
     this will open 8080 port with public IP and can be accessible from internet.
      - Method : [`authorizeSecurityGroupIngress()`](http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/EC2.html#authorizeSecurityGroupIngress-property)
 
     - Parameters : 
+    
+```json
                     {
                         GroupId: securityGroupID,
                         IpPermissions: [{
@@ -171,3 +176,4 @@ After we've created your subnet and configured your routing, We can launch an in
                             ToPort: 8080
                         }]
                     };
+```
